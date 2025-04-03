@@ -27,7 +27,14 @@ export const useCalculator = () => {
             setFormula(number)
         }
     
-    }, [ number ])
+    }, [ number ]);
+
+    useEffect(() => {
+        const subResult = calculateSubResult();
+        setPrevNumber(`${subResult}`)
+      
+    }, [formula]);
+    
     
 
     const clean = () => {
@@ -90,6 +97,8 @@ export const useCalculator = () => {
     }
 
     const setLastNumber = () => {
+
+        calculateResult();
 
         if (number.endsWith('.')) {
             setPrevNumber( number.slice(0, -1));
